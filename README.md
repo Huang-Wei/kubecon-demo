@@ -1,1 +1,1 @@
-# Demo for 2017 Kubecon Europe
+# Demo for 2018 Kubecon Europe
