@@ -58,8 +58,8 @@ func main() {
 		glog.Fatalf("Error building example clientset: %s", err.Error())
 	}
 
-	kubeInformerFactory := kubeinformers.NewSharedInformerFactory(kubeClient, time.Second*30)
-	exampleInformerFactory := informers.NewSharedInformerFactory(exampleClient, time.Second*30)
+	kubeInformerFactory := kubeinformers.NewSharedInformerFactory(kubeClient, time.Second*0)
+	exampleInformerFactory := informers.NewSharedInformerFactory(exampleClient, time.Second*0)
 
 	controller := NewController(kubeClient, exampleClient, kubeInformerFactory, exampleInformerFactory)
 
