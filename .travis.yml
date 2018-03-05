@@ -1,0 +1,21 @@
+sudo: required
+
+language: go
+
+go:
+- 1.9
+
+branches:
+  only:
+  - master
+
+services:
+- docker
+
+install:
+- go get github.com/Masterminds/glide
+
+script:
+- make deps
+- make
+# - make push
