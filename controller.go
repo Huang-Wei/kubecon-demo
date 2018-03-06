@@ -44,7 +44,7 @@ import (
 	listers "github.com/Huang-Wei/kubecon-demo/pkg/client/listers/samplecontroller/v1alpha1"
 )
 
-const controllerAgentName = "sample-controller"
+const controllerAgentName = "kubecon-demo"
 
 const (
 	// SuccessSynced is used as part of the Event 'reason' when a Foo is synced
