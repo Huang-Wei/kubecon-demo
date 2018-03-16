@@ -18,7 +18,7 @@ install:
 script:
 - make deps
 - make
-# - make push
+- make push
 
 notifications:
   email: false
