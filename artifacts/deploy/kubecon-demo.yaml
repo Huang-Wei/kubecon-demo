@@ -13,6 +13,13 @@ spec:
       labels:
         app: kubecon-demo
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: kubecon-demo
+            topologyKey: kubernetes.io/hostname
       containers:
       - name: kubecon-demo
         image: hweicdl/kubecon-demo:v0.0.1
