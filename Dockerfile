@@ -4,4 +4,4 @@ FROM alpine:3.7
 
 COPY main /
 
-CMD ["/main"]
+CMD ["/main", "--v=4", "--logtostderr=true"]
