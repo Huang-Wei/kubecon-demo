@@ -4,7 +4,7 @@ metadata:
   name: kubecon-demo
   namespace: demo
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: kubecon-demo
@@ -22,7 +22,7 @@ spec:
             topologyKey: kubernetes.io/hostname
       containers:
       - name: kubecon-demo
-        image: hweicdl/kubecon-demo:v0.0.1
+        image: hweicdl/kubecon-demo:v0.0.3
         env:
         - name: NAMESPACE
           valueFrom:
