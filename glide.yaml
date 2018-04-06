@@ -34,3 +34,4 @@ import:
   - tools/record
   - util/flowcontrol
   - util/workqueue
+- package: k8s.io/code-generator
