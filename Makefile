@@ -14,10 +14,14 @@ deps:
 
 build:
 	$(COMMONENVVAR) $(BUILDENVVAR) go build -o main *.go
+	$(COMMONENVVAR) $(BUILDENVVAR) go build -o poker/main poker/*.go
 
-push:
+image: build
 	docker build -t hweicdl/$(IMAGE_NAME):$(TAG) .
+	docker build -t hweicdl/poker:$(TAG) ./poker/
+
+push: image
 	docker login -u $(DOCKER_USERNAME) -p $(DOCKER_PASSWORD)
 	docker push hweicdl/$(IMAGE_NAME):$(TAG)
 
-.PHONY: all deps test build push
+.PHONY: all deps test build image push
