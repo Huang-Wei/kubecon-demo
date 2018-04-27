@@ -22,7 +22,7 @@ spec:
             topologyKey: kubernetes.io/hostname
       containers:
       - name: kubecon-demo
-        image: hweicdl/kubecon-demo:v0.0.3
+        image: hweicdl/kubecon-demo:v0.1.0
         env:
         - name: NAMESPACE
           valueFrom:
