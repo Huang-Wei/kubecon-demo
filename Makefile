@@ -7,7 +7,7 @@ BUILDENVVAR = CGO_ENABLED=0
 all: build
 
 deps:
-	glide install
+	dep ensure
 
 # test:
 # 	$(COMMONENVVAR) $(BUILDENVVAR) go test ./... -v
