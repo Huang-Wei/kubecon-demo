@@ -20,6 +20,8 @@ package fake
 
 import (
 	clientset "github.com/Huang-Wei/kubecon-demo/pkg/client/clientset/versioned"
+	samplecontrolleev1alpha1 "github.com/Huang-Wei/kubecon-demo/pkg/client/clientset/versioned/typed/samplecontrollee/v1alpha1"
+	fakesamplecontrolleev1alpha1 "github.com/Huang-Wei/kubecon-demo/pkg/client/clientset/versioned/typed/samplecontrollee/v1alpha1/fake"
 	samplecontrollerv1alpha1 "github.com/Huang-Wei/kubecon-demo/pkg/client/clientset/versioned/typed/samplecontroller/v1alpha1"
 	fakesamplecontrollerv1alpha1 "github.com/Huang-Wei/kubecon-demo/pkg/client/clientset/versioned/typed/samplecontroller/v1alpha1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -69,6 +71,16 @@ func (c *Clientset) Discovery() discovery.DiscoveryInterface {
 }
 
 var _ clientset.Interface = &Clientset{}
+
+// SamplecontrolleeV1alpha1 retrieves the SamplecontrolleeV1alpha1Client
+func (c *Clientset) SamplecontrolleeV1alpha1() samplecontrolleev1alpha1.SamplecontrolleeV1alpha1Interface {
+	return &fakesamplecontrolleev1alpha1.FakeSamplecontrolleeV1alpha1{Fake: &c.Fake}
+}
+
+// Samplecontrollee retrieves the SamplecontrolleeV1alpha1Client
+func (c *Clientset) Samplecontrollee() samplecontrolleev1alpha1.SamplecontrolleeV1alpha1Interface {
+	return &fakesamplecontrolleev1alpha1.FakeSamplecontrolleeV1alpha1{Fake: &c.Fake}
+}
 
 // SamplecontrollerV1alpha1 retrieves the SamplecontrollerV1alpha1Client
 func (c *Clientset) SamplecontrollerV1alpha1() samplecontrollerv1alpha1.SamplecontrollerV1alpha1Interface {

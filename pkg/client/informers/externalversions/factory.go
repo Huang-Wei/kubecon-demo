@@ -25,6 +25,7 @@ import (
 
 	versioned "github.com/Huang-Wei/kubecon-demo/pkg/client/clientset/versioned"
 	internalinterfaces "github.com/Huang-Wei/kubecon-demo/pkg/client/informers/externalversions/internalinterfaces"
+	samplecontrollee "github.com/Huang-Wei/kubecon-demo/pkg/client/informers/externalversions/samplecontrollee"
 	samplecontroller "github.com/Huang-Wei/kubecon-demo/pkg/client/informers/externalversions/samplecontroller"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
@@ -123,7 +124,12 @@ type SharedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
+	Samplecontrollee() samplecontrollee.Interface
 	Samplecontroller() samplecontroller.Interface
+}
+
+func (f *sharedInformerFactory) Samplecontrollee() samplecontrollee.Interface {
+	return samplecontrollee.New(f, f.namespace, f.tweakListOptions)
 }
 
 func (f *sharedInformerFactory) Samplecontroller() samplecontroller.Interface {

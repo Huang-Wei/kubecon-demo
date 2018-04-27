@@ -21,7 +21,8 @@ package externalversions
 import (
 	"fmt"
 
-	v1alpha1 "github.com/Huang-Wei/kubecon-demo/pkg/apis/samplecontroller/v1alpha1"
+	v1alpha1 "github.com/Huang-Wei/kubecon-demo/pkg/apis/samplecontrollee/v1alpha1"
+	samplecontroller_v1alpha1 "github.com/Huang-Wei/kubecon-demo/pkg/apis/samplecontroller/v1alpha1"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
 )
@@ -52,8 +53,12 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
-	// Group=samplecontroller.k8s.io, Version=v1alpha1
-	case v1alpha1.SchemeGroupVersion.WithResource("foos"):
+	// Group=samplecontrollee.k8s.io, Version=v1alpha1
+	case v1alpha1.SchemeGroupVersion.WithResource("bars"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Samplecontrollee().V1alpha1().Bars().Informer()}, nil
+
+		// Group=samplecontroller.k8s.io, Version=v1alpha1
+	case samplecontroller_v1alpha1.SchemeGroupVersion.WithResource("foos"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Samplecontroller().V1alpha1().Foos().Informer()}, nil
 
 	}

@@ -27,8 +27,7 @@ CODEGEN_PKG=${CODEGEN_PKG:-$(cd ${SCRIPT_ROOT}; ls -d -1 ./vendor/k8s.io/code-ge
 #                  instead of the $GOPATH directly. For normal projects this can be dropped.
 ${CODEGEN_PKG}/generate-groups.sh "deepcopy,client,informer,lister" \
   github.com/Huang-Wei/kubecon-demo/pkg/client github.com/Huang-Wei/kubecon-demo/pkg/apis \
-  samplecontroller:v1alpha1 \
-  --output-base "$(dirname ${BASH_SOURCE})/../../.." \
+  "samplecontroller:v1alpha1 samplecontrollee:v1alpha1" \
   --go-header-file ${SCRIPT_ROOT}/hack/boilerplate.go.txt
 
 # To use your own boilerplate text use:

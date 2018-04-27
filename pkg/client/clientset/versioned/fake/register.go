@@ -19,6 +19,7 @@ limitations under the License.
 package fake
 
 import (
+	samplecontrolleev1alpha1 "github.com/Huang-Wei/kubecon-demo/pkg/apis/samplecontrollee/v1alpha1"
 	samplecontrollerv1alpha1 "github.com/Huang-Wei/kubecon-demo/pkg/apis/samplecontroller/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
@@ -50,5 +51,6 @@ func init() {
 // After this, RawExtensions in Kubernetes types will serialize kube-aggregator types
 // correctly.
 func AddToScheme(scheme *runtime.Scheme) {
+	samplecontrolleev1alpha1.AddToScheme(scheme)
 	samplecontrollerv1alpha1.AddToScheme(scheme)
 }
