@@ -270,6 +270,7 @@ func (c *Controller) syncHandler(key string) error {
 		glog.V(4).Infof("Foo %s spec replicas: %d, status replicas: %d", name, *foo.Spec.Replicas, foo.Status.AvailableReplicas)
 		fooCopy := foo.DeepCopy()
 		*fooCopy.Spec.Replicas = ((foo.Status.AvailableReplicas % 2) + 1)
+		time.Sleep(5 * time.Second)
 		_, err = c.sampleclientset.SamplecontrollerV1alpha1().Foos(foo.Namespace).Update(fooCopy)
 	}
 
